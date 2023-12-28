@@ -15,6 +15,11 @@ The below command compiles the code, runs the tests, creates a WAR file and depl
 
 `mvn install jetty:run`
 
+You can now access the app with a brower at http://localhost:8080. You can also send HTTP requests to the REST API at
+http://localhost:8080/rest/hello.
+
+### Deploying to Tomcat
+
 To deploy the code onto a dockerized Tomcat server, use the following commands:
 
 ```shell
@@ -25,6 +30,8 @@ docker run \
 -p 8080:8080 \
 tomcat:9.0
 ```
+
+### Using a Docker container for the database
 
 To setup a dockerized MySQL db and initialize it with schemas, run the following:
 ```shell
