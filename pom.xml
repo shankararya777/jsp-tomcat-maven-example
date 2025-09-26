@@ -14,6 +14,7 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <tomcat.plugin.version>3.1.2</tomcat.plugin.version>
     </properties>
 
     <dependencies>
@@ -94,21 +95,31 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.1.2</version>
             </plugin>
+
+            <!-- Tomcat 9 Maven plugin for deployment -->
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat9-maven-plugin</artifactId>
+                <version>${tomcat.plugin.version}</version>
+                <configuration>
+                    <url>http://3.92.201.159:9090/manager/text</url>
+                    <server>tomcat-server</server>
+                    <path>/tomcatjspexample</path>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
-    <!-- THIS TELLS MAVEN WHERE TO DEPLOY -->
-   <distributionManagement>
-    <repository>
-        <id>nexus-releases</id>
-        <name>Nexus Release Repository</name>
-        <url>http://3.95.243.153:8081/repository/maven-releases/</url>
-    </repository>
-    <snapshotRepository>
-        <id>nexus-snapshots</id>
-        <name>Nexus Snapshot Repository</name>
-        <url>http://3.95.243.153:8081/repository/maven-snapshots/</url>
-    </snapshotRepository>
-</distributionManagement>
-
+    <distributionManagement>
+        <repository>
+            <id>nexus-releases</id>
+            <name>Nexus Release Repository</name>
+            <url>http://3.95.243.153:8081/repository/maven-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <name>Nexus Snapshot Repository</name>
+            <url>http://3.95.243.153:8081/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>
