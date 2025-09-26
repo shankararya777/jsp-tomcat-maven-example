@@ -3,6 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
                              http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
@@ -14,7 +15,7 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <tomcat.plugin.version>3.1.2</tomcat.plugin.version>
+        <tomcat.plugin.version>2.2</tomcat.plugin.version> <!-- Correct version -->
     </properties>
 
     <dependencies>
@@ -76,16 +77,15 @@
                 </configuration>
             </plugin>
 
-            <!-- Jetty plugin for local testing -->
+            <!-- Tomcat 9 Maven plugin for deployment -->
             <plugin>
-                <groupId>org.eclipse.jetty</groupId>
-                <artifactId>jetty-maven-plugin</artifactId>
-                <version>10.0.15</version>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>${tomcat.plugin.version}</version>
                 <configuration>
-                    <httpConnector>
-                        <port>8080</port>
-                    </httpConnector>
-                    <scanIntervalSeconds>10</scanIntervalSeconds>
+                    <url>http://3.92.201.159:9090/manager/text</url>
+                    <server>tomcat-server</server>
+                    <path>/tomcatjspexample</path>
                 </configuration>
             </plugin>
 
@@ -94,18 +94,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.1.2</version>
-            </plugin>
-
-            <!-- Tomcat 9 Maven plugin for deployment -->
-            <plugin>
-                <groupId>org.apache.tomcat.maven</groupId>
-                <artifactId>tomcat9-maven-plugin</artifactId>
-                <version>${tomcat.plugin.version}</version>
-                <configuration>
-                    <url>http://3.92.201.159:9090/manager/text</url>
-                    <server>tomcat-server</server>
-                    <path>/tomcatjspexample</path>
-                </configuration>
             </plugin>
         </plugins>
     </build>
@@ -122,4 +110,5 @@
             <url>http://3.95.243.153:8081/repository/maven-snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
+
 </project>
