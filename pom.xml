@@ -25,7 +25,7 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- JAX-RS (optional, only if using REST API) -->
+        <!-- JAX-RS optional -->
         <dependency>
             <groupId>org.glassfish.jersey.containers</groupId>
             <artifactId>jersey-container-servlet</artifactId>
@@ -75,50 +75,18 @@
                 </configuration>
             </plugin>
 
-            <!-- Jetty plugin for local testing -->
-            <plugin>
-                <groupId>org.eclipse.jetty</groupId>
-                <artifactId>jetty-maven-plugin</artifactId>
-                <version>10.0.15</version>
-                <configuration>
-                    <httpConnector>
-                        <port>8080</port>
-                    </httpConnector>
-                    <scanIntervalSeconds>10</scanIntervalSeconds>
-                </configuration>
-            </plugin>
-
-            <!-- Surefire plugin for tests -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.1.2</version>
-            </plugin>
-
-            <!-- Tomcat 7 plugin (works for Tomcat 7, 8, 9) -->
+            <!-- Tomcat 7 plugin for deploy -->
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <version>2.2</version>
                 <configuration>
                     <url>http://3.92.201.159:9090/manager/text</url>
-                    <server>tomcat-server</server>
+                    <server>tomcat-server</server> <!-- must match settings.xml -->
                     <path>/tomcatjspexample</path>
                 </configuration>
             </plugin>
         </plugins>
     </build>
 
-    <distributionManagement>
-        <repository>
-            <id>nexus-releases</id>
-            <name>Nexus Release Repository</name>
-            <url>http://3.95.243.153:8081/repository/maven-releases/</url>
-        </repository>
-        <snapshotRepository>
-            <id>nexus-snapshots</id>
-            <name>Nexus Snapshot Repository</name>
-            <url>http://3.95.243.153:8081/repository/maven-snapshots/</url>
-        </snapshotRepository>
-    </distributionManagement>
 </project>
