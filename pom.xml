@@ -96,4 +96,14 @@
             </plugin>
         </plugins>
     </build>
+
+    <!-- THIS TELLS MAVEN WHERE TO DEPLOY -->
+    <distributionManagement>
+        <repository>
+            <id>nexus</id>
+            <name>Nexus Release Repository</name>
+            <url>http://3.95.243.153:8081/repository/maven-releases/</url>
+        </repository>
+    </distributionManagement>
+
 </project>
